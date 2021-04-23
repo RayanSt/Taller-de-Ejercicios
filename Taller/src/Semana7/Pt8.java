@@ -12,58 +12,37 @@ import java.util.Scanner;
  * @author bparr
  */
 public class Pt8 {
-    public static void main(String[] args)
-   {
-       Scanner sc = new Scanner(System.in);
-      System.out.println("Conjetura de Goldbach. Ingrese numeros mayores que 5");
- 
-      while ( true )
-      {
-         long numero = sc.nextInt();
-         if ( numero == 0 ) break;
-         if ( numero < 4 || numero == 5 ) continue;
- 
-// Conjetura fuerte para numeros pares, la debil para impares
-         if ( numero % 2 == 0 )
-         {
-            // Conjetura fuerte de Goldbach. Todo numero par >= 4 es la suma de dos primos
-            // Ej: 4 == 2 + 2 :: 6 == 3 + 3 :: 10 == 3 + 7 == 5 + 5
-            for ( long a = 2; a < numero; ++a )
-            {
-               if ( ! esPrimo(a) ) continue;
-               for ( long b = a; b < numero; ++b )
-               {
-                  if ( a + b == numero && esPrimo(b) )
-                     System.out.printf("%,d == %,d + %,d\n", numero, a, b);
-               }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+    int azar, i, cant = 0;
+        System.out.println("ingrese la cantidad de niños");
+        int numNin = sc.nextInt();
+        String nombres[] = new String[numNin];
+        for(int k = 0 ; k < nombres.length; k++){
+            System.out.print("Niño #"+(k+1)+": ");
+            nombres[k] = sc.nextLine();
+            System.out.println(" ");
+        }
+        
+        int numero[] = new int[numNin];
+        for (i = 0; i < numero.length; i++) {
+            numero[i] = i;
+        }
+        while (cant < nombres.length-1) {
+            System.out.println("Ingrese un numero");
+            azar = sc.nextInt();
+            for (i = 0; i < nombres.length; i++) {
+                if (numero[i] == azar) {
+                    numero[i] = -1;
+                    cant++;
+                }
             }
-         }
-         else
-         {
-            // Conjetura debil de Goldbach. Todo numero impar >= 7 es la suma de tres primos
-            // Ej: 7 == 2 + 2 + 3
-            for ( long a = 2; a < numero; ++a )
-            {
-               if ( ! esPrimo(a) ) continue;
-               for ( long b = a; b < numero; ++b )
-               {
-                  if ( ! esPrimo(b) ) continue;
-                  for ( long c = b; c < numero; ++c )
-                     if ( a + b + c == numero && esPrimo(c) )
-                        System.out.printf("%,d == %,d + %,d + %,d\n", numero, a, b, c);
-               }
+        }
+        for (i = 0; i < nombres.length; i++) {
+            if (numero[i] != -1) {
+                System.out.println("Lava los platos el niño de la posción " + numero[i]);
             }
-         }
-      }
- 
-   }
- 
-   public static boolean esPrimo(long numero)
-   {
-      for ( long i = 2; i < numero; ++i )
-         if ( numero % i == 0 )
-            return false;
- 
-      return true;
-   }
+        }
+    }
 }

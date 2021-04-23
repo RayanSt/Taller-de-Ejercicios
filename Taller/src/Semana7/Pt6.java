@@ -12,47 +12,44 @@ import java.util.Scanner;
  * @author bparr
  */
 public class Pt6 {
-    public static void main(String args[]){
+
+    public static void main(String[] args) {
+        
         Scanner sc = new Scanner(System.in);
-        int a, b, c;
-        do{
-            System.out.println("Ingrese el dato A");
-            a=sc.nextInt();
-            if(a<0){
-                System.out.println("EL NUMERO NO PUEDE SER NAGATIVO!!!"); 
-            }
-        }while(a<0); 
         
-        do{
-            System.out.println("Ingrese el dato B");
-            b=sc.nextInt();
-            if(b<0){
-                System.out.println("EL NUMERO NO PUEDE SER NAGATIVO!!!"); 
-            }
-        }while(b<0);
+        String palabra1 = "";
+        String palabra2 = "";
         
-        do{
-            System.out.println("Ingrese el dato C");
-            c=sc.nextInt();
-            if(c<0){
-                System.out.println("EL NUMERO NO PUEDE SER NAGATIVO!!!"); 
+        System.out.print("Ingrese una palabra: ");
+        palabra1 = sc.nextLine().trim();
+        do {
+            System.out.print("Ingrese una segunda palabra: ");
+            palabra2 = sc.nextLine().trim();
+            if (!(palabra1.length() == palabra2.length())) {
+                System.out.println("las palabras deben tener la misma longitud");
             }
-        }while(c<0);
+        } while (!(palabra1.length() == palabra2.length()));
         
-        System.out.println("Los tres se van a encontrar en "+MCM(a,b,c)+" dias");
+        if (esAnagrama(palabra1, palabra2) == palabra1.length()) {
+            System.out.println("Es un anagrama");
+        } else {
+            System.out.println("No es un anagrama");
+        }
+        
     }
-    public static int MCM(int A, int B, int C) {
-        int numMax = A;
-        if (B > numMax) {
-            numMax = B;
+
+    public static int esAnagrama(String palabra1, String palabra2) {
+        int contador2 = 0;
+        for (int contador = 0; contador < palabra1.length(); contador++) {
+            for (int contador1 = 0; contador1 < palabra1.length(); contador1++) {
+                if (palabra1.charAt(contador) == palabra2.charAt(contador1)) {
+                    ++contador2;
+                    
+                }
+                
+            }
         }
-        if (C > numMax) {
-            numMax = C;
-        }
-        int i = numMax;
-        while ((i % A != 0) || (i % B != 0) || (i % C != 0)) {
-            i++;
-        }
-        return i;
+        return contador2;
     }
+
 }

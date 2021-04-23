@@ -13,25 +13,18 @@ import java.util.Scanner;
  */
 public class Pt7 {
 
+  
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n;
-
-        System.out.println("Ingresa un numero");
-        n = sc.nextInt();
-
-        if (esPrimo(n)) {
-            System.out.println("El numero " + n + " es primo");
-        } else {
-            System.out.println("El numero " + n + " NO es primo");
+        String contra = "";
+        System.out.print("Ingrese una palabra: ");
+        contra = sc.nextLine().trim();
+        //es mas facil usar expresiones regulares para contralar, busca regex para que te enteres como es
+        String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{10,}";
+        if(contra.matches(pattern)){
+            System.out.println("La contraseña es segura");
+        }else{
+            System.out.println("La contraseña no cumple los estandares");
         }
-
-    }
-
-    public static boolean esPrimo(int numero) {
-        for ( long i = 2; i < numero; ++i )
-         if ( numero % i == 0 )
-            return false;
-      return true;
     }
 }

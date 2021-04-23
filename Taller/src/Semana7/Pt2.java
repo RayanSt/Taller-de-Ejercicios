@@ -18,8 +18,8 @@ public class Pt2 {
         System.out.println("Ingrese el tamaño del arreglo");
         n = sc.nextInt();
 
-        //double Datos[] = llenar(n);
-        double Datos[] = {1,2,3};
+        double Datos[] = llenar(n);
+        //double Datos[] = {1,2,3};
         if (EstaOrdenado(Datos)) {
             System.out.println("El arreglo esta ordenado");
         } else {

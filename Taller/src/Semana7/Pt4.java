@@ -9,49 +9,41 @@ package Semana7;
  *
  * @author bparr
  */
+import java.util.Arrays;
 import java.util.Scanner;
 public class Pt4 {
     
-     public static void main(String[] args) {
+       public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int x,y;
-        System.out.println("Ingrese la coordenada X");
-        x=sc.nextInt();
-        System.out.println("Ingresa la coordenada Y");
-        y=sc.nextInt();
-        
-         System.out.println("Puntaje: "+Lanzamiento(x, y));
-       
-
-     }
- 
-    static String Lanzamiento(int x, int y) {
-
-        double dist = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
-        String resultado = "";
-        if (dist < 1) {
-            resultado = "15 puntos";
-        } else {
-            if (1 < dist && dist <= 2) {
-                resultado = "9 puntos";
-            } else {
-                if (2 < dist && dist <= 3) {
-                    resultado = "5 puntos";
-                } else {
-                    if (3 < dist && dist <= 4) {
-                        resultado = "2 puntos";
-                    } else {
-                        if (4 < dist && dist <= 5) {
-                            resultado = "1 punto";
-                        } else {
-                            resultado = "0 puntos, cayó fuera del tablero";
-
-                        }
-                    }
-                }
-            }
+        int a, n;
+        System.out.println("Ingrese el tamaño del arreglo");
+        n = sc.nextInt();
+        double[] arreglo = new double[n]; // creamos un arreglo para almacenar 20 elementos
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print("Dato " + (i + 1) + ": ");
+            arreglo[i] = sc.nextInt(); //Guardamos los datos en el arreglo uno por uno
+            System.out.println("-----------------");//en el rango buscado y lo almacenamos en el arreglo
         }
-        return resultado;
+        Arrays.sort(arreglo);
+        System.out.println("--------Datos ordenados---------");
+        for (int i = 0; i < arreglo.length; i++) {
+            System.out.print(" "+arreglo[i]);
+        }
+           System.out.println(" ");
+        System.out.println("Mediana: "+Mediana(arreglo));
     }
 
+
+    
+    private static double Mediana(double[] arr){
+        double mediana;
+        int numElementos = arr.length;
+        if(numElementos % 2 == 0){
+            double Medios = arr[numElementos/2] + arr[numElementos/2 - 1]; 
+            mediana = (double)Medios / 2; 
+        } else {
+            mediana = arr[numElementos/2];
+        }
+        return mediana;
+    }
 }
